@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+ENV/
+.env
+
+# Project specific
+file1.pdf
+file2.pdf
+output.html
+"touch main.py"

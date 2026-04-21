@@ -566,27 +566,32 @@ header p {
 .selection-summary {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: center;
+    gap: 2rem;
     margin-bottom: 2rem;
     background: var(--bg-card);
     backdrop-filter: var(--glass-blur);
     border: 1px solid var(--border);
     border-radius: 1.25rem;
-    padding: 1rem 1.5rem;
+    padding: 1.25rem 1.5rem;
 }
 
 .selection-slot {
     flex: 1;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 0; /* Prevent overflow issues */
 }
 
 .slot-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     color: var(--text-muted);
-    letter-spacing: 0.05em;
-    margin-bottom: 0.25rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.35rem;
+    font-weight: 700;
 }
 
 .slot-value {
@@ -595,6 +600,8 @@ header p {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 100%;
+    max-width: 250px;
 }
 
 .vs-circle {

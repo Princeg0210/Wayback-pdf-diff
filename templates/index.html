@@ -21,27 +21,63 @@
         </header>
 
         <main>
-            <div class="upload-section">
-                <div class="drop-zone" id="drop-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                    </svg>
-                    <p>Drop PDF 1 here or Click</p>
-                    <span class="file-name"></span>
-                    <input type="file" id="file-1" accept="application/pdf" hidden>
-                </div>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="local">Local Files</button>
+                <button class="tab-btn" data-tab="wayback">Wayback Search</button>
+            </div>
 
-                <div class="drop-zone" id="drop-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                    </svg>
-                    <p>Drop PDF 2 here or Click</p>
-                    <span class="file-name"></span>
-                    <input type="file" id="file-2" accept="application/pdf" hidden>
+            <div id="local-section" class="tab-content active">
+                <div class="upload-section">
+                    <div class="drop-zone" id="drop-1">
+                        <button class="view-icon-btn" title="View PDF" type="button">👁️</button>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                        </svg>
+                        <p>Drop PDF 1 here or Click</p>
+                        <span class="file-name"></span>
+                        <input type="file" id="file-1" accept="application/pdf" hidden>
+                    </div>
+
+                    <div class="drop-zone" id="drop-2">
+                        <button class="view-icon-btn" title="View PDF" type="button">👁️</button>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                        </svg>
+                        <p>Drop PDF 2 here or Click</p>
+                        <span class="file-name"></span>
+                        <input type="file" id="file-2" accept="application/pdf" hidden>
+                    </div>
+                </div>
+            </div>
+
+            <div id="wayback-section" class="tab-content">
+                <div class="search-box-container">
+                    <div class="search-box">
+                        <input type="text" id="wayback-url" placeholder="Paste URL of a PDF or a website domain">
+                        <button id="search-btn">Search Archive</button>
+                    </div>
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="wide-search">
+                        <span class="checkmark"></span>
+                        Deep Search (Discover all PDFs on this site)
+                    </label>
+                </div>
+                <div id="snapshots-list" class="snapshots-grid"></div>
+            </div>
+
+            <div id="selection-summary" class="selection-summary">
+                <div class="selection-slot" id="slot-1-summary">
+                    <span class="slot-label">Source 1</span>
+                    <span class="slot-value">None selected</span>
+                </div>
+                <div class="vs-circle">VS</div>
+                <div class="selection-slot" id="slot-2-summary">
+                    <span class="slot-label">Source 2</span>
+                    <span class="slot-value">None selected</span>
                 </div>
             </div>
 
@@ -50,9 +86,36 @@
             <div class="loader" id="loader"></div>
 
             <div id="results" class="results-section">
+                <div class="stats-card" id="stats-area">
+                    <div class="stat-item add">
+                        <span class="label">Additions</span>
+                        <span class="value" id="stat-add">0</span>
+                    </div>
+                    <div class="stat-item del">
+                        <span class="label">Deletions</span>
+                        <span class="value" id="stat-del">0</span>
+                    </div>
+                    <div class="stat-item chg">
+                        <span class="label">Changes</span>
+                        <span class="value" id="stat-chg">0</span>
+                    </div>
+                    <div class="stat-actions">
+                        <button id="download-btn" class="action-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M7.5 12l4.5 4.5m0 0l4.5-4.5M12 3v13.5" />
+                            </svg>
+                            Export
+                        </button>
+                    </div>
+                </div>
                 <div class="results-card">
                     <div id="diff-output"></div>
                 </div>
+            </div>
+
+            <div class="history-section" id="history-section">
+                <h3>Recent Comparisons</h3>
+                <div id="history-list" class="history-list"></div>
             </div>
         </main>
     </div>
